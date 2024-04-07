@@ -1,4 +1,5 @@
 package com.electrondevelopers.electronmod;
+import com.electrondevelopers.electronmod.items.ModItems;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.Registries;
@@ -34,12 +35,14 @@ public class ElectronMod
 {
     // Define mod id in a common place for everything to reference
     public static final String MODID = "electronmod";
-    // Directly reference a slf4j logger
+    
     private static final Logger LOGGER = LogUtils.getLogger();
 
     public ElectronMod()
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        ModItems.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
