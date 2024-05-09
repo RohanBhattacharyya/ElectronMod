@@ -34,6 +34,6 @@ public class CraftingListener {
 
     private static String formatPromptForGemini(String[] items) {
         // Convert the array into a single string formatted for the API
-        return "[" + String.join(",", items) + "]";
+        return "{" + String.join(",", items) + "}";
     }
 }
