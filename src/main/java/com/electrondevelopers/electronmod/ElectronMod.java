@@ -60,7 +60,10 @@ public class ElectronMod
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
-        
+        if(event.getTab() == CreativeModeTabs.INGREDIENTS)
+        {
+            event.accept(ModItems.GOLD_COIN);
+        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
