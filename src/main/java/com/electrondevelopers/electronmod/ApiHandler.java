@@ -1,5 +1,7 @@
-package com.eletrondevelopers.electronmod;
+package com.electrondevelopers.electronmod;
+import com.electrondevelopers.electronmod.ElectronMod;
 
+import com.electrondevelopers.electronmod.registry.DynamicRegistry;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -10,6 +12,11 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.registries.RegistryObject;
+
 
 public class ApiHandler {
     private static final String API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent";
@@ -28,9 +35,9 @@ public class ApiHandler {
 
             // Now you can use these to create items or blocks
             if (isBlock) {
-                // Call method to create block
+                com.electrondevelopers.electronmod.registry.DynamicRegistry.createBlock(name, description, nbtData);
             } else {
-                // Call method to create item
+                com.electrondevelopers.electronmod.registry.DynamicRegistry.createItem(name, description, nbtData, isTool);
             }
         } catch (Exception e) {
             System.out.println("Failed to parse JSON: " + e.getMessage());

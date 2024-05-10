@@ -1,5 +1,12 @@
+package com.electrondevelopers.electronmod.events;
+import com.electrondevelopers.electronmod.registry.DynamicRegistry;
+import com.electrondevelopers.electronmod.ElectronMod;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.registries.RegistryObject;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-import com.eletrondevelopers.electronmod.registry.DynamicRegistry;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 

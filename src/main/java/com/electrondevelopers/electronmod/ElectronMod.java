@@ -34,7 +34,9 @@ import org.slf4j.Logger;
 public class ElectronMod
 {
     // Define mod id in a common place for everything to reference
+    public static final String MOD_ID = "electronmod";
     public static final String MODID = "electronmod";
+
     
     private static final Logger LOGGER = LogUtils.getLogger();
 
@@ -60,8 +62,8 @@ public class ElectronMod
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
-        if(event.getTab() == CreativeModeTabs.INGREDIENTS)
-        {
+        if (event.getTab().equals(CreativeModeTabs.INGREDIENTS)) {
+            
             event.accept(ModItems.GOLD_COIN);
         }
     }

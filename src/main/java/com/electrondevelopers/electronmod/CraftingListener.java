@@ -1,12 +1,19 @@
-package com.eletrondevelopers.electronmod;
+package com.electrondevelopers.electronmod;
+import com.electrondevelopers.electronmod.ElectronMod;
 
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraft.world.item.ItemStack;
+
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.api.distmarker.Dist;
-import com.eletrondevelopers.electronmod.ApiHandler;
+
+import com.electrondevelopers.electronmod.ApiHandler;
+import net.minecraftforge.registries.RegistryObject;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 
 @EventBusSubscriber(modid = ElectronMod.MOD_ID, bus = EventBusSubscriber.Bus.FORGE, value = Dist.DEDICATED_SERVER)
@@ -22,7 +29,9 @@ public class CraftingListener {
                 if (stack.isEmpty()) {
                     items[i] = "0";
                 } else {
-                    items[i] = stack.getItem().getRegistryName().toString();
+                    if (!stack.isEmpty()) {
+                        items[i] = stack.getItem().getRegistryName().toString();
+                    }                    
                 }
             }
             String prompt = formatPromptForGemini(items);
