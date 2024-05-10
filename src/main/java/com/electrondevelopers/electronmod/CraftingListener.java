@@ -4,6 +4,8 @@ import com.electrondevelopers.electronmod.ElectronMod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.resources.ResourceLocation;
+
 
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -13,6 +15,7 @@ import com.electrondevelopers.electronmod.ApiHandler;
 import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 
@@ -30,7 +33,7 @@ public class CraftingListener {
                     items[i] = "0";
                 } else {
                     if (!stack.isEmpty()) {
-                        items[i] = stack.getItem().getRegistryName().toString();
+                        items[i] = ForgeRegistries.ITEMS.getKey(stack.getItem()).toString();
                     }                    
                 }
             }
