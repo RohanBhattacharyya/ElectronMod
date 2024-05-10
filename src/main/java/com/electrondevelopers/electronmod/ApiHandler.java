@@ -17,6 +17,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.registries.RegistryObject;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.network.chat.Component;
 
 public class ApiHandler {
     private static final String API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent";
@@ -63,6 +65,9 @@ public class ApiHandler {
         Executor executor = Executors.newSingleThreadExecutor();
         futureResponse.thenAcceptAsync(response -> {
             System.out.println("Response from Gemini API: " + response.body());
+            if (Minecraft.getInstance().player != null) {
+                Minecraft.getInstance().player.displayClientMessage(Component.literal("response: " + response.body()), true);
+            }
             // Here, parse the JSON response and handle it accordingly
         }, executor).exceptionally(e -> {
             e.printStackTrace();

@@ -18,6 +18,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.network.chat.Component;
 
 @EventBusSubscriber(modid = ElectronMod.MOD_ID, bus = EventBusSubscriber.Bus.FORGE, value = Dist.DEDICATED_SERVER)
 public class CraftingListener {
@@ -39,6 +41,9 @@ public class CraftingListener {
             }
             String prompt = formatPromptForGemini(items);
             System.out.println("Formatted prompt for Gemini: " + prompt);
+            if (Minecraft.getInstance().player != null) {
+                Minecraft.getInstance().player.displayClientMessage(Component.literal("prompt: " + prompt), true);
+            }
             // You would typically call the API here
             ApiHandler.sendPrompt(prompt);
         }
